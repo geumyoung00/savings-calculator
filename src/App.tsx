@@ -83,7 +83,7 @@ function App() {
 						<th>연도별 총 금액</th>
 						<th>연 이자</th>
 						<th>이자 합계</th>
-						<th>연 납입액 원금</th>
+						<th>원금 합계</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -91,8 +91,8 @@ function App() {
 						<td>연도</td>
 						<td>이자를 포함한 총 적금액</td>
 						<td>한 해의 복리 누적 이자</td>
-						<td>한 해 이자의 합계</td>
-						<td>한 해 납입액의 원금 총액</td>
+						<td>이자의 합계</td>
+						<td>납입액의 원금 총액</td>
 					</tr>
 				</tbody>
 			</table>
