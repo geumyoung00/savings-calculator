@@ -1,4 +1,14 @@
-export const Table = () => {
+import { YearlyDataType } from '../../App'
+
+export const Table = ({
+  yearlyData,
+  currentSavings,
+}: {
+  yearlyData: YearlyDataType[] | null
+  currentSavings: string
+}) => {
+  console.log('yearlyData?', yearlyData)
+  console.log('currentSavings?', currentSavings)
   return (
     // Todo: 아래 표를 조건부로 표시(결과 데이터를 사용할 수 있는 경우에만)
     // 데이터가 없으면 대체 텍스트 표시
@@ -13,13 +23,31 @@ export const Table = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>연도</td>
-          <td>이자를 포함한 총 적금액</td>
-          <td>한 해의 복리 누적 이자</td>
-          <td>이자의 합계</td>
-          <td>납입액의 원금 총액</td>
-        </tr>
+        {yearlyData ? (
+          yearlyData.map((item) => {
+            const totalSavings =
+              +currentSavings + item.yearlyContribution * item.year
+            const totalInterests = item.savingsEndOfYear - totalSavings
+
+            return (
+              <tr key={item.year}>
+                <td>{item.year}</td>
+                <td>{item.savingsEndOfYear.toFixed(1)}</td>
+                <td>{item.yearlyInterest.toFixed(1)}</td>
+                <td>{totalInterests.toFixed(1)}</td>
+                <td>{totalSavings}</td>
+              </tr>
+            )
+          })
+        ) : (
+          <tr>
+            <td>예시 데이터 연도</td>
+            <td>이자를 포함한 총 적금액</td>
+            <td>한 해의 복리 누적 이자</td>
+            <td>이자의 합계</td>
+            <td>납입액의 원금 총액</td>
+          </tr>
+        )}
       </tbody>
     </table>
   )

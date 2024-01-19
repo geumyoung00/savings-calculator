@@ -1,6 +1,29 @@
-export const Form = () => {
+import React from 'react'
+import { UserInputType } from '../../App'
+
+export const Form = ({
+  calculateHandler,
+}: {
+  calculateHandler: (userInput: UserInputType) => void
+}) => {
+  const onSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const currentSavingsValue = e.target['current-savings'].value
+    const yearlyContribution = e.target['yearly-contribution'].value
+    const expectedReturn = e.target['expected-return'].value
+    const duration = e.target['duration'].value
+
+    calculateHandler({
+      'current-savings': currentSavingsValue,
+      'yearly-contribution': yearlyContribution,
+      'expected-return': expectedReturn,
+      duration: duration,
+    })
+  }
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={onSubmitHandler}>
       <div className="input-group">
         <p>
           <label htmlFor="current-savings">원금 ($)</label>

@@ -1,15 +1,26 @@
+import { useState } from 'react'
 import { Form } from './components/Form/Form'
 import { Header } from './components/Header/Header'
 import { Table } from './components/Table/Table'
 
-type UserInputType = {
+export type UserInputType = {
   'current-savings': string
   'yearly-contribution': string
   'expected-return': string
   duration: string
 }
 
+export type YearlyDataType = {
+  year: number
+  yearlyInterest: number
+  savingsEndOfYear: number
+  yearlyContribution: number
+}
+
 function App() {
+  const [userInputData, setUserinputData] = useState<UserInputType | null>(null)
+  const [yearlyData, setYearlyData] = useState<YearlyDataType[] | null>(null)
+  const [currentSavings, setCurrentSavings] = useState('')
   const calculateHandler = (userInput: UserInputType) => {
     // 양식이 제출되면 트리거되어야 합니다.
     // 양식의 제출 이벤트에 직접 바인딩하는 방법이 아닐지도?
@@ -33,15 +44,18 @@ function App() {
         yearlyContribution: yearlyContribution,
       })
     }
-
     // yearlyData를 사용
+    setYearlyData(yearlyData)
+    setCurrentSavings(userInput['current-savings'])
+    console.log('userInput?', userInput)
+    setUserinputData(userInput)
   }
 
   return (
     <div>
       <Header />
-      <Form />
-      <Table />
+      <Form calculateHandler={calculateHandler} />
+      <Table yearlyData={yearlyData} currentSavings={currentSavings} />
     </div>
   )
 }
