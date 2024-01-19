@@ -18,7 +18,6 @@ export type YearlyDataType = {
 }
 
 function App() {
-  const [userInputData, setUserinputData] = useState<UserInputType | null>(null)
   const [yearlyData, setYearlyData] = useState<YearlyDataType[] | null>(null)
   const [currentSavings, setCurrentSavings] = useState('')
   const calculateHandler = (userInput: UserInputType) => {
@@ -47,8 +46,6 @@ function App() {
     // yearlyData를 사용
     setYearlyData(yearlyData)
     setCurrentSavings(userInput['current-savings'])
-    console.log('userInput?', userInput)
-    setUserinputData(userInput)
   }
 
   return (

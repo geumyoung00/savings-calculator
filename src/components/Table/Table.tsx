@@ -7,8 +7,6 @@ export const Table = ({
   yearlyData: YearlyDataType[] | null
   currentSavings: string
 }) => {
-  console.log('yearlyData?', yearlyData)
-  console.log('currentSavings?', currentSavings)
   return (
     // Todo: 아래 표를 조건부로 표시(결과 데이터를 사용할 수 있는 경우에만)
     // 데이터가 없으면 대체 텍스트 표시
