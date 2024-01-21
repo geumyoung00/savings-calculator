@@ -48,10 +48,17 @@ function App() {
     setCurrentSavings(userInput['current-savings'])
   }
 
+  const resetYearlyData = () => {
+    setYearlyData(null)
+  }
+
   return (
     <div>
       <Header />
-      <Form calculateHandler={calculateHandler} />
+      <Form
+        calculateHandler={calculateHandler}
+        resetYearlyData={resetYearlyData}
+      />
       <Table yearlyData={yearlyData} currentSavings={currentSavings} />
     </div>
   )

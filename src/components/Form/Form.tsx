@@ -3,8 +3,10 @@ import { UserInputType } from '../../App'
 
 export const Form = ({
   calculateHandler,
+  resetYearlyData,
 }: {
   calculateHandler: (userInput: UserInputType) => void
+  resetYearlyData: () => void
 }) => {
   const onSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -22,6 +24,9 @@ export const Form = ({
     })
   }
 
+  const resetHandler = () => {
+    resetYearlyData()
+  }
   return (
     <form className="form" onSubmit={onSubmitHandler}>
       <div className="input-group">
@@ -45,7 +50,7 @@ export const Form = ({
         </p>
       </div>
       <p className="actions">
-        <button type="reset" className="buttonAlt">
+        <button type="reset" className="buttonAlt" onClick={resetHandler}>
           초기화
         </button>
         <button type="submit" className="button">
